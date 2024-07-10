@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Javascript : Introduction</title>
+
+    <script>
+        // Definitions des fonctions utilisees dans notre page HTML
+
+        // estAlphabet verifie si une chaine de caracteres est alphabetique ou non
+        // parametre str : objet string
+        // valeur de retour : true si la chaine est alphabetique 
+        //                    false si non
+
+        function estAlphabet(str) {
+            if(s=='') return false;
+
+            let strMaj = str.toUpperCase();
+            for (i = 0; i < str.length; i++)
+                if (strMaj.charCodeAt(i) < 65 || strMaj.charCodeAt(i) > 90) return false;
+
+            return true;
+        }
+
+        function estExtraAlphaNum(str) {
+            if(s=='') return false;
+
+            let strMaj = str.toUpperCase();
+            alert(str)
+            for (i = 0; i < strMaj.length; i++)
+                if ((strMaj.charCodeAt(i) < 65 || strMaj.charCodeAt(i) > 90) && strMaj.charCodeAt(i) != 46) return false;
+            return true;
+          
+        }
+
+        function estEmail(s) {
+            if(s=='') return false;
+            
+            // Trouver le abobase
+            posAt = s.indexOf("@");
+            if (posAt == -1) return false;
+
+            // Le nom ou l'identificateur de l'utilisateur, qui est la partie suivie de @, 
+            // doit etre extraAlapaNum
+            if (!estExtraAlphaNum(s.slice(0, posAt))) return false;
+
+            // le domaine, qui est la partie qui vient apres de le @, doit contenir au moins un point
+            // Trouver le dernier point
+            posPoint = s.lastIndexOf(".");
+            if (posPoint == -1) return false;
+
+            // Le domaine de premier niveau qui est la partie qui vient apres le point doit etre  
+            // une chaine alphabetique de taille 2 ou 3
+            racine = s.substr(posPoint + 1);
+            if (!estAlphabet(racine) || racine.length < 2 || racine.length > 3) return false;
+
+            //le nom du domaine qui est la partie entre @ et le point doit etre extraAlapaNum
+            if (!estExtraAlphaNum(s.slice(posAt + 1, posPoint))) return false;
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Initiation au langage Javascript</h1>
+    <h2>Objectifs de l’atelier :</h2>
+    <ul>
+        <li>Se familiariser avec la syntaxe de Javascript (déclaration des variables, structure conditionnelle,
+            structure itérative, fonction, …) ;</li>
+        <li>Comprendre l’orienté  objet en Javascript par l’exemple (objet string et objet console) ;</li>
+        <li>Apprendre à manipuler les chaines de caractères avec Javascript.</li>
+    </ul>
+
+    <h2>Enoncés :</h2>
+    <p>Ecrire une page web qui permet de saisir une chaine de caractères et vérifier
+        si la chaine est une adresse électronique ou non. L’utilisation de l’objet string,
+        dans la solution est obligatoire
+    </p>
+
+
+
+    <script>
+        let email = prompt("Saisir une adresse électronique");
+        if (!estEmail(email))
+            console.log("la chaine '" + email + "' n'est pas une adresse électronique");
+        else
+            console.log("la chaine '" + email + "' est une adresse électronique");
+    </script>
+
+</body>
+
+</html>
